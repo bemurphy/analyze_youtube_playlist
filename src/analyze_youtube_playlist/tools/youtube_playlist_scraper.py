@@ -45,6 +45,9 @@ class YoutubePlaylistScraper(BaseTool):
                 title_element = video.find_element(By.CSS_SELECTOR, "#video-title")
                 video_data.append(title_element.get_attribute("href"))
 
+            # Truncate video list to max videos for now for dev speed
+            video_data = video_data[:6]
+
             # Return scraped data as string with newlines
             return "\n".join(video_data)
         except Exception as e:

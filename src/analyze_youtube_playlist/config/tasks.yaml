@@ -18,8 +18,8 @@ video_transcript_task:
 transcript_summarizer_task:
   description: >
     Given a title and text transcript from a video, generate a summary of the transcript.
-    Use bullet points, requiring 10-15 to for each transcript.
-    Include the title of the video in the summary as the first bullet point, and don't count it towards the 10-15 bullet points.
+    Use bullet points, roughly {bullet_point_count} to for each transcript.
+    Include the title of the video in the summary, and don't count it towards the bullet point count.
   expected_output: >
     Bullet point text summary of the transcript for all videos, including the title of each video as the first bullet point.
     Ensure this is more than 1 video summarized.
