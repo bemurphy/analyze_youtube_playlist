@@ -1,0 +1,14 @@
+playlist_task:
+  description: >
+    Visit the youtube playlist at url {playlist_url} and find all the youtube video URLs
+    contained within the playlist.
+  expected_output: >
+    A list of video URLs from the playlist at {playlist_url}.
+  agent: playlist_parser
+
+video_transcript_task:
+  description: >
+    Given a Youtube video urls, visit the videos and extract the transcripts.
+  expected_output: >
+    All list of all the video transcripts.
+  agent: video_transcript

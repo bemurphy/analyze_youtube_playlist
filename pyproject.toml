@@ -1,0 +1,23 @@
+[project]
+name = "analyze_youtube_playlist"
+version = "0.1.0"
+description = "analyze_youtube_playlist using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.98.0,<1.0.0"
+]
+
+[project.scripts]
+analyze_youtube_playlist = "analyze_youtube_playlist.main:run"
+run_crew = "analyze_youtube_playlist.main:run"
+train = "analyze_youtube_playlist.main:train"
+replay = "analyze_youtube_playlist.main:replay"
+test = "analyze_youtube_playlist.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
