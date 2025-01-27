@@ -18,7 +18,8 @@ def run():
     Run the crew.
     """
     inputs = {
-        'playlist_url': 'https://www.youtube.com/playlist?list=PLp9pLaqAQbY2byWMoUz0r_FMQmNjy_cvo',
+        # 'playlist_url': 'https://www.youtube.com/playlist?list=PLp9pLaqAQbY2byWMoUz0r_FMQmNjy_cvo',
+        'playlist_url': 'https://www.youtube.com/playlist?list=PLp9pLaqAQbY0DLbhgLuBJZNHBB-vW8QCk',
         'topic': 'AI Automation',
     }
 

@@ -15,9 +15,11 @@ class YoutubeVideoSearch(BaseTool):
         # print('!!! DEBUG !!!')
 
         try:
-            return YoutubeLoader.from_youtube_url(
+            doc = YoutubeLoader.from_youtube_url(
                 video_url,
-                add_video_info=False,
-            ).load()[0].page_content
+                add_video_info=True,
+            ).load()[0]
+
+            return f"title: {doc.metadata['title']}\n\ntranscript: " + doc.page_content
         except Exception as e:
             return f"Error performing search: {str(e)}"

@@ -9,14 +9,19 @@ playlist_task:
 video_transcript_task:
   description: >
     Given a set of Youtube video urls, visit each video and extract the text transcript. Don't do any analysis on the transcript.
+    Include the title of the video in the transcript as the first line.
   expected_output: >
-    The raw text transcript as plain text.
+    The text video transcript as plain text with no timestamps.
+    Include the title of the video in the transcript as the first line.
   agent: video_transcript
 
 transcript_summarizer_task:
   description: >
-    Given a text transcript from a video and generate a summary of the transcript.
-    Use bullet points, about 10-15 to summarize each transcript, starting with the title.
+    Given a title and text transcript from a video, generate a summary of the transcript.
+    Use bullet points, requiring 10-15 to for each transcript.
+    Include the title of the video in the summary as the first bullet point, and don't count it towards the 10-15 bullet points.
   expected_output: >
-    A short bullet text summary of the transcript.
+    Bullet point text summary of the transcript for all videos, including the title of each video as the first bullet point.
+    Ensure this is more than 1 video summarized.
+    format as markdown
   agent: transcript_summarizer

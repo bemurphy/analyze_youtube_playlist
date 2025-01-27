@@ -70,7 +70,7 @@ class AnalyzeYoutubePlaylist():
     @task
     def transcript_summarizer_task(self) -> Task:
         epoch_millis = str(round(time.time() * 1000)) 
-        fname = f"output/transcript_summarizer_{epoch_millis}.txt"
+        fname = f"output/transcript_summarizer_{epoch_millis}.md"
 
         return Task(
             config=self.tasks_config['transcript_summarizer_task'],
