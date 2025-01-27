@@ -17,6 +17,8 @@ class YoutubeVideoSearch(BaseTool):
         try:
             doc = YoutubeLoader.from_youtube_url(
                 video_url,
+                # note, you might need to locally patch pytube to get this to work
+                # see https://github.com/pytube/pytube/issues/2074#issuecomment-2492647027
                 add_video_info=True,
             ).load()[0]
 
