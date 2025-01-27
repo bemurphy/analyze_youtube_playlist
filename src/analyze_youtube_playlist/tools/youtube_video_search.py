@@ -10,14 +10,14 @@ class YoutubeVideoSearch(BaseTool):
     )
 
     def _run(self, video_url: str) -> str:
-        print('!!! DEBUG !!!')
-        print(video_url)
-        print('!!! DEBUG !!!')
+        # print('!!! DEBUG !!!')
+        # print(video_url)
+        # print('!!! DEBUG !!!')
 
         try:
             return YoutubeLoader.from_youtube_url(
                 video_url,
                 add_video_info=False,
-            ).load()
+            ).load()[0].page_content
         except Exception as e:
             return f"Error performing search: {str(e)}"

@@ -5,6 +5,8 @@ from crewai.project import CrewBase, agent, crew, task
 from analyze_youtube_playlist.tools.youtube_playlist_scraper import YoutubePlaylistScraper
 from analyze_youtube_playlist.tools.youtube_video_search import YoutubeVideoSearch
 
+import time
+
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -13,9 +15,8 @@ from analyze_youtube_playlist.tools.youtube_video_search import YoutubeVideoSear
 class AnalyzeYoutubePlaylist():
     """AnalyzeYoutubePlaylist crew"""
 
-    model = 'ollama/llama3.2'
-    # model = "ollama/openhermes"
-    llm = LLM(model=model, base_url='http://localhost:11434')
+    model = 'gpt-4o-mini'
+    llm = LLM(model=model)
 
     # Learn more about YAML configuration files here:
     # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
@@ -43,6 +44,14 @@ class AnalyzeYoutubePlaylist():
             verbose=True
         )
 
+    @agent
+    def transcript_summarizer(self) -> Agent:
+        return Agent(
+            config=self.agents_config['transcript_summarizer'],
+            llm=self.llm,
+            verbose=True
+        )
+
     # To learn more about structured task outputs, 
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
@@ -55,8 +64,17 @@ class AnalyzeYoutubePlaylist():
     @task 
     def video_transcripts_task(self) -> Task:
         return Task(
-            config=self.tasks_config['video_transcript_task'],
-            # output_file="output/video_transcripts.txt"
+            config=self.tasks_config['video_transcript_task']
+        )
+    
+    @task
+    def transcript_summarizer_task(self) -> Task:
+        epoch_millis = str(round(time.time() * 1000)) 
+        fname = f"output/transcript_summarizer_{epoch_millis}.txt"
+
+        return Task(
+            config=self.tasks_config['transcript_summarizer_task'],
+            output_file=fname
         )
 
     @crew

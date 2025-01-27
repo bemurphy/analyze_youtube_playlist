@@ -21,7 +21,7 @@ class YoutubePlaylistScraper(BaseTool):
     )
     args_schema: Type[BaseModel] = YoutubePlaylistScraperInput
 
-    def _run(self, playlist_url: str) -> list:
+    def _run(self, playlist_url: str) -> str:
         chrome_options = Options()
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--disable-gpu")  # Recommended for headless
@@ -45,8 +45,8 @@ class YoutubePlaylistScraper(BaseTool):
                 title_element = video.find_element(By.CSS_SELECTOR, "#video-title")
                 video_data.append(title_element.get_attribute("href"))
 
-            # Return scraped data
-            return video_data
+            # Return scraped data as string with newlines
+            return "\n".join(video_data)
         except Exception as e:
             print(f"Error: {e}")
             return []
