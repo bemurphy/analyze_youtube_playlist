@@ -10,10 +10,6 @@ class YoutubeVideoSearch(BaseTool):
     )
 
     def _run(self, video_url: str) -> str:
-        # print('!!! DEBUG !!!')
-        # print(video_url)
-        # print('!!! DEBUG !!!')
-
         try:
             doc = YoutubeLoader.from_youtube_url(
                 video_url,
